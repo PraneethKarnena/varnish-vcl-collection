@@ -22,12 +22,12 @@ sub vcl_recv {
 		}
 		set req.url = regsub(req.url, "\?.*$", "");
 		unset req.http.Cookie;
-		set req.grace = 2m;
-		return(lookup);
+		set beresp.grace = 2m;
+		return(hash);
 	}
 }
 
-sub vcl_fetch {
+sub vcl_backend_response {
 	if (req.request ~ "^(GET|HEAD)$" && req.url ~ "\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|pdf|txt|tar|wav|bmp|rtf|js|flv|swf|html|htm)$") {
 		unset beresp.http.set-cookie;
 		set beresp.ttl = 24h;
