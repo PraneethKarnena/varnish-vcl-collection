@@ -8,7 +8,7 @@ backend default {
 import std;
 
 include "lib/xforward.vcl";
-include "lib/cloudflare.vcl";
+#include "lib/cloudflare.vcl";
 include "lib/purge.vcl";
 include "lib/bigfiles.vcl";        # Varnish 3.0.3+
 #include "lib/bigfiles_pipe.vcl";  # Varnish 3.0.2
@@ -118,8 +118,8 @@ sub vcl_backend_response {
 
 	# Avoid caching error responses
 	if (beresp.status == 404 || beresp.status >= 500) {
-		set beresp.ttl   = 0s;
-		set beresp.grace = 15s;
+		set beresp.http.X-Cacheable = "NO:Error Pages";
+		return(pass);
 	}
 
 	# Deliver the content
