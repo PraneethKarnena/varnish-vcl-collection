@@ -41,7 +41,7 @@ sub vcl_recv {
 
 	### Check for reasons to bypass the cache!
 	# never cache anything except GET/HEAD
-	if (req.method != "GET" && req.request != "HEAD") {
+	if (req.method != "GET" && req.method != "HEAD") {
 		return(pass);
 	}
 	# don't cache logged-in users or authors
