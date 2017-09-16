@@ -59,7 +59,6 @@ sub vcl_recv {
 
 	### looks like we might actually cache it!
 	# fix up the request
-	set beresp.grace = 2m;
 	set req.url = regsub(req.url, "\?replytocom=.*$", "");
 
 	# Remove has_js, Google Analytics __*, and wooTracker cookies.
