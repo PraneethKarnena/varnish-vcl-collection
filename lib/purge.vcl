@@ -24,11 +24,9 @@ sub vcl_recv {
    			}
  	return (purge);
  		}
-		
+}		
 		sub vcl_purge {
  			set req.method = "GET";
  			set req.http.X-Purger = "Purged";
  			return (restart);
 		}
-}
-
