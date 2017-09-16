@@ -1,4 +1,10 @@
 ======================
+General Note
+======================
+
+This is a heavily modified version of DreamHost's WordPress Varnish Configuration (https://github.com/dreamhost/varnish-vcl-collection). The DreamHost's version is incompatible with Varnish 4.0+. This modified configuration is fully tested with Varnish 4.0+ and is battle ready and can be used on production servers.
+
+======================
 varnish-vcl-collection
 ======================
 
